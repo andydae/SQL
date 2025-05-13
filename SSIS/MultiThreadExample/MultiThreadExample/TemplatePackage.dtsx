@@ -1,0 +1,383 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/22/2023 10:32:03 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LENOVO_LAPTOP"
+  DTS:CreatorName="LENOVO_LAPTOP\andyd"
+  DTS:DTSID="{022B151E-4E55-470B-8332-6B2D889A4F8C}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5131.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{BB6458D5-6A2E-4A55-859D-B80B72E482CC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ADONet_Database1]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{AB2CB9BA-773D-44CA-BF83-C1632DAE2771}"
+      DTS:ObjectName="ADONet_Database1">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Package::ConnString_ADONet_Database1]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=LENOVO_LAPTOP;Initial Catalog=ThreadConfig;Integrated Security=True;Application Name=SSIS-Package-{AB2CB9BA-773D-44CA-BF83-C1632DAE2771}LENOVO_LAPTOP.ThreadConfig;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{B3E34D5B-B761-4833-9259-49E071FE0898}"
+      DTS:ObjectName="ConnString_ADONet_Database1">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">Data Source=LENOVO_LAPTOP;Initial Catalog=ThreadConfig;Integrated Security=True;Application Name=SSIS-Package-{AB2CB9BA-773D-44CA-BF83-C1632DAE2771}LENOVO_LAPTOP.ThreadConfig;</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="3"
+      DTS:DTSID="{BB757107-FB63-4640-A9EA-3CF66779959E}"
+      DTS:ObjectName="ThreadInstanceNumber">
+      <DTS:Property
+        DTS:DataType="3"
+        DTS:Name="ParameterValue">1</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{96DBE63E-145F-4012-B503-7FB2C770B6DB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="BaseTableName">
+      <DTS:VariableValue
+        DTS:DataType="8">Department</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6F1B06E3-9394-4E21-B152-90BCEEE0DFE2}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;\&quot;SELECT * FROM &quot; + @[User::FullTableName] + &quot; \&quot; queryout  &quot;  +  @[User::OutputDirectory] + &quot;\\&quot; + @[User::FileName] + &quot;  -w -T -t &quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="bcpArguments">
+      <DTS:VariableValue
+        DTS:DataType="8">"SELECT * FROM AdventureWorks2019.HumanResources.Department " queryout  C:\ExtractFiles\Department.txt  -w -T -t </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{40F48F0A-9885-4654-BB1B-89E5FDBC3D87}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="!ISNULL(@[User::FullTableName]) &amp;&amp; @[User::FullTableName] != &quot;-1&quot; ? 1:0"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="EvalExpressionNull">
+      <DTS:VariableValue
+        DTS:DataType="3">1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9C5DFAFA-C0EF-4F7E-9FC8-2029D63E8DA7}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::BaseTableName] + &quot;.txt&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">Department.txt</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{78BA1492-ED59-4CD9-99C9-0B6E4E4E782B}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FullTableName">
+      <DTS:VariableValue
+        DTS:DataType="8">AdventureWorks2019.HumanResources.Department</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{95A40E12-6C67-4BCE-965A-ACC705D03FE9}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="OutputDirectory">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\ExtractFiles</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8F621F0C-7C7F-4459-BF7A-C04EF5CB7F92}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableId">
+      <DTS:VariableValue
+        DTS:DataType="3">4</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\For Loop Container"
+      DTS:CreationName="STOCK:FORLOOP"
+      DTS:Description="For Loop Container"
+      DTS:DTSID="{38B83561-1133-486A-800E-CC0004DF48BD}"
+      DTS:EvalExpression="@EvalExpressionNull == 1"
+      DTS:ExecutableType="STOCK:FORLOOP"
+      DTS:LocaleID="-1"
+      DTS:MaxConcurrent="1"
+      DTS:ObjectName="For Loop Container">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container\Execute Process Task - BCP"
+          DTS:CreationName="Microsoft.ExecuteProcess"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{1DE53EA7-2AC0-4EEF-ADFF-C4109B14C38C}"
+          DTS:ExecutableType="Microsoft.ExecuteProcess"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute Process Task - BCP"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Arguments">@[User::bcpArguments]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\bcp.exe"
+              Arguments="&quot;SELECT * FROM AdventureWorks2019.HumanResources.Department &quot; queryout  C:\ExtractFiles\Department.txt  -w -T -t " />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container\SQL - Get Next Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{06b3ce08-8b41-43b2-bf93-29dc7a3dd7c4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Get Next Task"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AB2CB9BA-773D-44CA-BF83-C1632DAE2771}"
+              SQLTask:SqlStatementSource="BEGIN TRAN&#xA;DECLARE @TableID INT&#xA;SELECT TOP 1 @TableID = TableID&#xA;FROM ThreadConfig.dbo.ThreadQueue WITH (UPDLOCK)&#xA;WHERE Status IS NULL&#xA;&#xA;UPDATE ThreadConfig.dbo.ThreadQueue&#xA;SET Status = 'Pending',&#xA;        ThreadInstanceNumber = @ThreadInstanceNumber&#xA;WHERE TableID = @TableID&#xA;COMMIT TRAN&#xA;&#xA;IF (@TableID IS NOT NULL)&#xA;SELECT &#xA;&#x9;TableID,&#xA;&#x9;FullTableName,&#xA;&#x9;BaseTableName&#xA;FROM ThreadConfig.dbo.ThreadQueue&#xA;WHERE TableID = @TableID&#xA;&#xA;&#xA;ELSE &#xA;SELECT &#xA;&#x9;-1 as TableID&#xA;               ,-1 as FullTableName&#xA;               ,-1 as BaseTableName"
+              SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="0"
+                SQLTask:DtsVariableName="User::TableId" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="1"
+                SQLTask:DtsVariableName="User::FullTableName" />
+              <SQLTask:ResultBinding
+                SQLTask:ResultName="2"
+                SQLTask:DtsVariableName="User::BaseTableName" />
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@ThreadInstanceNumber"
+                SQLTask:DtsVariableName="$Package::ThreadInstanceNumber"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\For Loop Container\SQL - Mark Task Complete"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{24a71d45-4472-4d72-900d-dda8c1502fd5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL - Mark Task Complete"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{AB2CB9BA-773D-44CA-BF83-C1632DAE2771}"
+              SQLTask:SqlStatementSource="BEGIN TRAN &#xA;UPDATE ThreadConfig.dbo.ThreadQueue&#xA;SET Status = 'Success'&#xA;WHERE TableID = @TableID &#xA;COMMIT TRAN" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+              <SQLTask:ParameterBinding
+                SQLTask:ParameterName="@TableID"
+                SQLTask:DtsVariableName="User::TableId"
+                SQLTask:ParameterDirection="Input"
+                SQLTask:DataType="11"
+                SQLTask:ParameterSize="-1" />
+            </SQLTask:SqlTaskData>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Loop Container.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{0B7086AA-1256-4117-9219-103E6034A1B0}"
+          DTS:From="Package\For Loop Container\SQL - Mark Task Complete"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\For Loop Container\SQL - Get Next Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\For Loop Container.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{B637B602-6C3A-4875-9B04-CE18AD9F13B7}"
+          DTS:From="Package\For Loop Container\Execute Process Task - BCP"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\For Loop Container\SQL - Mark Task Complete" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL - Get First Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{AB3549AF-EA09-412E-A017-197FB66E423E}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL - Get First Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AB2CB9BA-773D-44CA-BF83-C1632DAE2771}"
+          SQLTask:SqlStatementSource="BEGIN TRAN&#xA;DECLARE @TableID INT&#xA;SELECT TOP 1 @TableID = TableID&#xA;FROM ThreadConfig.dbo.ThreadQueue WITH (UPDLOCK)&#xA;WHERE Status IS NULL&#xA;&#xA;UPDATE ThreadConfig.dbo.ThreadQueue&#xA;SET Status = 'Pending',&#xA;        ThreadInstanceNumber = @ThreadInstanceNumber&#xA;WHERE TableID = @TableID&#xA;COMMIT TRAN&#xA;&#xA;IF (@TableID IS NOT NULL)&#xA;SELECT &#xA;&#x9;TableID,&#xA;&#x9;FullTableName,&#xA;&#x9;BaseTableName&#xA;FROM ThreadConfig.dbo.ThreadQueue&#xA;WHERE TableID = @TableID&#xA;&#xA;&#xA;ELSE &#xA;SELECT &#xA;&#x9;-1 as TableID&#xA;               ,-1 as FullTableName&#xA;               ,-1 as BaseTableName"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::TableId" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="1"
+            SQLTask:DtsVariableName="User::FullTableName" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="2"
+            SQLTask:DtsVariableName="User::BaseTableName" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="@ThreadInstanceNumber"
+            SQLTask:DtsVariableName="$Package::ThreadInstanceNumber"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="11"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{F4718316-50B8-44B6-BA7E-7F750A43705E}"
+      DTS:From="Package\SQL - Get First Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\For Loop Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="173.6,41.6"
+          Id="Package\SQL - Get First Task"
+          TopLeft="30.3,5.49999999999995" />
+        <NodeLayout
+          Size="174.4,41.6"
+          Id="Package\For Loop Container\SQL - Get Next Task"
+          TopLeft="24.3,208.7" />
+        <NodeLayout
+          Size="204,41.6"
+          Id="Package\For Loop Container\SQL - Mark Task Complete"
+          TopLeft="9.50000000000003,107.1" />
+        <EdgeLayout
+          Id="Package\For Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="111.5,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="212,41.6"
+          Id="Package\For Loop Container\Execute Process Task - BCP"
+          TopLeft="5.50000000000001,5.50000000000007" />
+        <EdgeLayout
+          Id="Package\For Loop Container.PrecedenceConstraints[Constraint 1]"
+          TopLeft="111.5,47.1000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="223.2,305.6"
+          Size="223.2,348.8"
+          Id="Package\For Loop Container"
+          TopLeft="5.50000000000006,107.1" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="117.1,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
